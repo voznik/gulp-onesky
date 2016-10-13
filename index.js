@@ -36,8 +36,8 @@ module.exports = function (opts) {
     if (opts.locales) {
       Object.keys(body).forEach(function (lang) {
         stream.queue(new gutil.File({
-          path: opts.outputFile + '_' + lang.split('')[0] + '.json',
-          contents: new Buffer(JSON.stringify(body[lang], null, 2))
+          path: opts.outputFile + '_' + lang.split('-')[0] + '.json',
+          contents: new Buffer(JSON.stringify(body[lang].translation, null, 2)) // get json content without "translation" key
         }));
       });
     } else {
