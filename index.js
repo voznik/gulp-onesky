@@ -36,7 +36,7 @@ module.exports = function (opts) {
     if (opts.locales) {
       Object.keys(body).forEach(function (lang) {
         stream.queue(new gutil.File({
-          path: path.join(opts.outputDir, lang.split('-')[0], 'messages.json'),
+          path: opts.outputFile + '_' + lang.split('')[0] + '.json',
           contents: new Buffer(JSON.stringify(body[lang], null, 2))
         }));
       });
@@ -62,7 +62,7 @@ function getMultilangual(opts, cb) {
       'api_key': opts.publicKey,
       'timestamp': time,
       'dev_hash': hash,
-      'file_format': 'I18NEXT_MULTILINGUAL_JSON',
+      'file_format': 'I18NEXT_MULTILINGUAL_JSON', //HIERARCHICAL_JSON
       'source_file_name': opts.sourceFile
     });
 
